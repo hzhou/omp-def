@@ -1,0 +1,8 @@
+include: c/omp.def
+
+page: test, basic_frame
+    module: c
+    CC: gcc -fopenmp
+
+    &call omp_parallel, 4
+        $print Hello world!

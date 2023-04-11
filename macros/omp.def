@@ -7,19 +7,20 @@ macros:
     omp_id: omp_get_thread_num()
 
 subcode: omp_parallel(N, @t)
-    $call omp, parallel num_threads($(N)) $(t)
-    {
+    &call omp, parallel num_threads($(N)) $(t)
         BLOCK
-    }
 
 subcode: omp_for(@iter)
-    $call omp, parallel for
+    #pragma omp parallel for
     $for $(iter)
         BLOCK
 
 subcode: omp_barrier
-    $call omp, barrier
+    #pragma omp barrier
 
 #---------------------------------------- 
 subcode: omp(@P)
     #pragma omp $(P)
+    {
+        BLOCK
+    }

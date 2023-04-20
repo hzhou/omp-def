@@ -6,8 +6,8 @@ macros:
     omp_N: omp_get_num_threads()
     omp_id: omp_get_thread_num()
 
-subcode: omp_parallel(N, @t)
-    &call omp, parallel num_threads($(N)) $(t)
+subcode: omp_parallel(NTHREADS, @t)
+    &call omp, parallel num_threads($(NTHREADS)) $(t)
         BLOCK
 
 subcode: omp_for(@iter)
